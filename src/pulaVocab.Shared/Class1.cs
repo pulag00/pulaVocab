@@ -1,0 +1,5 @@
+namespace pulaVocab.Shared;
+
+public class Class1
+{
+}

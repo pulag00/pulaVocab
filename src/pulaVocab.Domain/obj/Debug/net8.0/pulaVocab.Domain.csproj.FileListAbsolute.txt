@@ -1,0 +1,11 @@
+C:\Users\usr\Desktop\pulaVocab\src\pulaVocab.Domain\bin\Debug\net8.0\pulaVocab.Domain.deps.json
+C:\Users\usr\Desktop\pulaVocab\src\pulaVocab.Domain\bin\Debug\net8.0\pulaVocab.Domain.dll
+C:\Users\usr\Desktop\pulaVocab\src\pulaVocab.Domain\bin\Debug\net8.0\pulaVocab.Domain.pdb
+C:\Users\usr\Desktop\pulaVocab\src\pulaVocab.Domain\obj\Debug\net8.0\pulaVocab.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\usr\Desktop\pulaVocab\src\pulaVocab.Domain\obj\Debug\net8.0\pulaVocab.Domain.AssemblyInfoInputs.cache
+C:\Users\usr\Desktop\pulaVocab\src\pulaVocab.Domain\obj\Debug\net8.0\pulaVocab.Domain.AssemblyInfo.cs
+C:\Users\usr\Desktop\pulaVocab\src\pulaVocab.Domain\obj\Debug\net8.0\pulaVocab.Domain.csproj.CoreCompileInputs.cache
+C:\Users\usr\Desktop\pulaVocab\src\pulaVocab.Domain\obj\Debug\net8.0\pulaVocab.Domain.dll
+C:\Users\usr\Desktop\pulaVocab\src\pulaVocab.Domain\obj\Debug\net8.0\refint\pulaVocab.Domain.dll
+C:\Users\usr\Desktop\pulaVocab\src\pulaVocab.Domain\obj\Debug\net8.0\pulaVocab.Domain.pdb
+C:\Users\usr\Desktop\pulaVocab\src\pulaVocab.Domain\obj\Debug\net8.0\ref\pulaVocab.Domain.dll

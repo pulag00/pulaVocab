@@ -1,0 +1,5 @@
+@page "/vocabulary/{Id:guid}"
+@inject IVocabularyApiClient Api
+@inject NavigationManager Navigation
+@if (entry is null) { <p>Cargando…</p> } else { <article class="detail @entry.Language.ToString().ToLowerInvariant()"><h1>@entry.Term</h1><p>@entry.Pronunciation</p><h2>Traducciones</h2><ul>@foreach(var m in entry.Meanings){<li><strong>@m.Translation</strong> @m.Definition</li>}</ul><h2>Información</h2><p>@entry.PartOfSpeech · @entry.Level · @entry.Status</p>@if(entry.Examples.Count>0){<h2>Ejemplos</h2>@foreach(var e in entry.Examples){<blockquote>@e.Sentence<br/><small>@e.Translation</small></blockquote>}}@if(!string.IsNullOrWhiteSpace(entry.PersonalNotes)){<h2>Notas</h2><p>@entry.PersonalNotes</p>}<p><a class="button" href="/vocabulary/edit/@entry.Id">Editar</a> <a class="button secondary" href="/vocabulary">Volver</a></p></article>}
+@code { [Parameter] public Guid Id {get;set;} VocabularyEntryResponse? entry; protected override async Task OnParametersSetAsync(){entry=await Api.GetByIdAsync(Id);if(entry is null)Navigation.NavigateTo("/vocabulary");} }

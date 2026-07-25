@@ -1,0 +1,7 @@
+@page "/"
+@inject IVocabularyApiClient Api
+<PageTitle>VocabMaster</PageTitle>
+<h1>Tu vocabulario</h1>
+@if (loading) { <p>Cargando resumen…</p> } else { <section class="stats"><article><strong>@total</strong><span>Total</span></article><article class="english"><strong>@english</strong><span>Inglés</span></article><article class="german"><strong>@german</strong><span>Alemán</span></article><article><strong>@newWords</strong><span>Nuevas</span></article><article><strong>@learning</strong><span>Aprendiendo</span></article><article><strong>@mastered</strong><span>Dominadas</span></article></section> }
+<p><a class="button" href="/vocabulary/new">Agregar palabra</a> <a class="button secondary" href="/vocabulary">Ver vocabulario</a></p>
+@code { bool loading = true; int total, english, german, newWords, learning, mastered; protected override async Task OnInitializedAsync() { try { var all = await Api.GetPagedAsync(new() { PageSize = 100 }); total = all.TotalCount; english = (await Api.GetPagedAsync(new() { Language = Language.English, PageSize = 1 })).TotalCount; german = (await Api.GetPagedAsync(new() { Language = Language.German, PageSize = 1 })).TotalCount; newWords = (await Api.GetPagedAsync(new() { Status = LearningStatus.New, PageSize = 1 })).TotalCount; learning = (await Api.GetPagedAsync(new() { Status = LearningStatus.Learning, PageSize = 1 })).TotalCount; mastered = (await Api.GetPagedAsync(new() { Status = LearningStatus.Mastered, PageSize = 1 })).TotalCount; } finally { loading = false; } } }
