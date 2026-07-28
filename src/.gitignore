@@ -1,0 +1,45 @@
+# Compilación .NET
+[Bb]in/
+[Oo]bj/
+artifacts/
+publish/
+out/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.rsuser
+
+# VS Code
+.vscode/
+!.vscode/extensions.json
+
+# JetBrains
+.idea/
+*.DotSettings.user
+
+# Pruebas
+TestResults/
+coverage/
+coverage.*
+*.trx
+
+# Archivos locales y secretos
+.env
+.env.*
+appsettings.Development.json
+appsettings.Local.json
+secrets.json
+
+# Logs
+logs/
+*.log
+
+# Sistema operativo
+Thumbs.db
+.DS_Store
+
+# SDK local descargado
+.dotnet10/
+dotnet-install.ps1
