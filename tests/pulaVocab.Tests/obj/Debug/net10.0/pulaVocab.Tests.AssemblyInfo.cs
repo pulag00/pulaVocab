@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("pulaVocab.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e456d8ee5a7e14d00d99753cac4fffe4eb30900c")]
 [assembly: System.Reflection.AssemblyProductAttribute("pulaVocab.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("pulaVocab.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
