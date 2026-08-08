@@ -1,0 +1,11 @@
+HTTP/1.1 200 OK
+Content-Length: 60682
+Content-Type: text/javascript
+Date: Sun, 02 Aug 2026 04:42:36 GMT
+Server: Kestrel
+Accept-Ranges: bytes
+Cache-Control: no-cache
+ETag: "lDXsDYFgm62F+YUvxES7IOTCXYpiHpU3uR45YdC6mq4="
+Last-Modified: Fri, 26 Jun 2026 20:58:06 GMT
+Vary: Accept-Encoding
+

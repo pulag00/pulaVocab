@@ -6,11 +6,18 @@ public class VocabularyEntry
 {
     public Guid Id { get; private set; }
     public string Term { get; private set; }
+    public string NormalizedTerm { get; private set; }
     public Language Language { get; private set; }
     public PartOfSpeech? PartOfSpeech { get; private set; }
     public CefrLevel? Level { get; private set; }
     public LearningStatus Status { get; private set; }
     public string? Pronunciation { get; private set; }
+    public string? Ipa { get; private set; }
+    public string? IpaAmerican { get; private set; }
+    public string? IpaBritish { get; private set; }
+    public string? Synonyms { get; private set; }
+    public string? Antonyms { get; private set; }
+    public string? RelatedTerms { get; private set; }
     public string? PersonalNotes { get; private set; }
     public string? Source { get; private set; }
     public DateTime CreatedAtUtc { get; private set; }
@@ -28,9 +35,16 @@ public class VocabularyEntry
     {
         Id = Guid.NewGuid();
         Term = string.IsNullOrWhiteSpace(term) ? throw new ArgumentException("Term is required.", nameof(term)) : term.Trim();
+        NormalizedTerm = NormalizeTerm(Term);
         Language = language;
         Status = status;
         Pronunciation = null;
+        Ipa = null;
+        IpaAmerican = null;
+        IpaBritish = null;
+        Synonyms = null;
+        Antonyms = null;
+        RelatedTerms = null;
         PersonalNotes = null;
         Source = null;
         CreatedAtUtc = DateTime.UtcNow;
@@ -47,14 +61,21 @@ public class VocabularyEntry
     public void SetStatus(LearningStatus status) => Status = status;
 
     public void Update(string term, Language language, PartOfSpeech? partOfSpeech, CefrLevel? level, LearningStatus status,
-        string? pronunciation, string? personalNotes, string? source)
+        string? pronunciation, string? ipa, string? ipaAmerican, string? ipaBritish, string? synonyms, string? antonyms, string? relatedTerms, string? personalNotes, string? source)
     {
         Term = string.IsNullOrWhiteSpace(term) ? throw new ArgumentException("Term is required.", nameof(term)) : term.Trim();
+        NormalizedTerm = NormalizeTerm(Term);
         Language = language;
         PartOfSpeech = partOfSpeech;
         Level = level;
         Status = status;
         Pronunciation = Normalize(pronunciation);
+        Ipa = Normalize(ipa);
+        IpaAmerican = Normalize(ipaAmerican);
+        IpaBritish = Normalize(ipaBritish);
+        Synonyms = Normalize(synonyms);
+        Antonyms = Normalize(antonyms);
+        RelatedTerms = Normalize(relatedTerms);
         PersonalNotes = Normalize(personalNotes);
         Source = Normalize(source);
         UpdatedAtUtc = DateTime.UtcNow;
@@ -81,6 +102,7 @@ public class VocabularyEntry
     }
 
     private static string? Normalize(string? value) => string.IsNullOrWhiteSpace(value) ? null : value.Trim();
+    private static string NormalizeTerm(string term) => term.Trim().Replace("  ", " ").ToLowerInvariant();
 
     public VocabularyMeaning AddMeaning(string translation, string? definition = null, string? context = null)
     {

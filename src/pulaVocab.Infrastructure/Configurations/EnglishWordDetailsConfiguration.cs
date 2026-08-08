@@ -12,6 +12,7 @@ public class EnglishWordDetailsConfiguration : IEntityTypeConfiguration<EnglishW
 
         builder.HasKey(x => x.VocabularyEntryId);
         builder.Property(x => x.VocabularyEntryId).HasColumnName("vocabulary_entry_id");
+        builder.Property(x => x.Infinitive).HasColumnName("infinitive").HasMaxLength(200);
         builder.Property(x => x.PastTense).HasColumnName("past_tense").HasMaxLength(200);
         builder.Property(x => x.PastParticiple).HasColumnName("past_participle").HasMaxLength(200);
         builder.Property(x => x.ThirdPersonSingular).HasColumnName("third_person_singular").HasMaxLength(200);

@@ -3,6 +3,7 @@ namespace pulaVocab.Domain.Entities;
 public class EnglishWordDetails
 {
     public Guid VocabularyEntryId { get; set; }
+    public string? Infinitive { get; set; }
     public string? PastTense { get; set; }
     public string? PastParticiple { get; set; }
     public string? ThirdPersonSingular { get; set; }

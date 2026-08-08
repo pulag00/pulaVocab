@@ -13,11 +13,18 @@ public class VocabularyEntryConfiguration : IEntityTypeConfiguration<VocabularyE
         builder.HasKey(x => x.Id);
         builder.Property(x => x.Id).HasColumnName("id");
         builder.Property(x => x.Term).HasColumnName("term").HasMaxLength(200).IsRequired();
+        builder.Property(x => x.NormalizedTerm).HasColumnName("normalized_term").HasMaxLength(200).IsRequired();
         builder.Property(x => x.Language).HasColumnName("language").IsRequired();
         builder.Property(x => x.PartOfSpeech).HasColumnName("part_of_speech");
         builder.Property(x => x.Level).HasColumnName("cefr_level");
         builder.Property(x => x.Status).HasColumnName("status").IsRequired();
         builder.Property(x => x.Pronunciation).HasColumnName("pronunciation").HasMaxLength(200);
+        builder.Property(x => x.Ipa).HasColumnName("ipa").HasMaxLength(200);
+        builder.Property(x => x.IpaAmerican).HasColumnName("ipa_american").HasMaxLength(200);
+        builder.Property(x => x.IpaBritish).HasColumnName("ipa_british").HasMaxLength(200);
+        builder.Property(x => x.Synonyms).HasColumnName("synonyms").HasMaxLength(1000);
+        builder.Property(x => x.Antonyms).HasColumnName("antonyms").HasMaxLength(1000);
+        builder.Property(x => x.RelatedTerms).HasColumnName("related_terms").HasMaxLength(1000);
         builder.Property(x => x.PersonalNotes).HasColumnName("personal_notes").HasMaxLength(2000);
         builder.Property(x => x.Source).HasColumnName("source").HasMaxLength(500);
         builder.Property(x => x.CreatedAtUtc).HasColumnName("created_at_utc").IsRequired();
@@ -51,6 +58,6 @@ public class VocabularyEntryConfiguration : IEntityTypeConfiguration<VocabularyE
         builder.HasIndex(x => x.Language).HasDatabaseName("ix_vocabulary_entries_language");
         builder.HasIndex(x => x.Status).HasDatabaseName("ix_vocabulary_entries_status");
         builder.HasIndex(x => x.Term).HasDatabaseName("ix_vocabulary_entries_term");
-        builder.HasIndex(x => new { x.Language, x.Term }).IsUnique().HasDatabaseName("ix_vocabulary_entries_language_term");
+        builder.HasIndex(x => new { x.Language, x.NormalizedTerm }).IsUnique().HasDatabaseName("ix_vocabulary_entries_language_normalized_term");
     }
 }
