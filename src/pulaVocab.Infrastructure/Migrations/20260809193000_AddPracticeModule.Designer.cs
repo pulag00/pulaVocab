@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using pulaVocab.Infrastructure;
@@ -11,9 +12,10 @@ using pulaVocab.Infrastructure;
 namespace pulaVocab.Infrastructure.Migrations
 {
     [DbContext(typeof(VocabMasterDbContext))]
-    partial class VocabMasterDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260809193000_AddPracticeModule")]
+    partial class AddPracticeModule
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -16,6 +16,9 @@ public class VocabMasterDbContext : DbContext
     public DbSet<GermanWordDetails> GermanWordDetails => Set<GermanWordDetails>();
     public DbSet<VocabularyTag> VocabularyTags => Set<VocabularyTag>();
     public DbSet<VocabularyEntryTag> VocabularyEntryTags => Set<VocabularyEntryTag>();
+    public DbSet<PracticeSession> PracticeSessions => Set<PracticeSession>();
+    public DbSet<PracticeAnswer> PracticeAnswers => Set<PracticeAnswer>();
+    public DbSet<WordPracticeProgress> WordPracticeProgress => Set<WordPracticeProgress>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
