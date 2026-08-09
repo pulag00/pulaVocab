@@ -28,6 +28,8 @@ public class VocabularyEntry
     public EnglishWordDetails? EnglishDetails { get; private set; }
     public GermanWordDetails? GermanDetails { get; private set; }
     public ICollection<VocabularyEntryTag> VocabularyEntryTags { get; private set; } = new List<VocabularyEntryTag>();
+    public WordPracticeProgress? PracticeProgress { get; private set; }
+    public ICollection<PracticeAnswer> PracticeAnswers { get; private set; } = new List<PracticeAnswer>();
 
     private VocabularyEntry() { }
 
