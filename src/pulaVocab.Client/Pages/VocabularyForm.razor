@@ -73,8 +73,10 @@ else
                 <input @bind="model.RelatedTerms" placeholder="relacionado1, relacionado2" />
             </label>
             <div class="actions">
-                <button type="button" @onclick="Autocomplete" disabled="@isAutocompleteLoading || string.IsNullOrWhiteSpace(model.Term)">@(isAutocompleteLoading ? "Buscando…" : "Buscar y completar")</button>
-                <button type="button" @onclick="ClearAutocomplete" disabled="@isAutocompleteLoading">Limpiar</button>
+                <button type="button" @onclick="Autocomplete"
+                        disabled="@(isAutocompleteLoading || string.IsNullOrWhiteSpace(model.Term))">
+                    @(isAutocompleteLoading ? "Buscando…" : "Buscar y completar")
+                </button>
             </div>
         </fieldset>
 
@@ -227,17 +229,29 @@ else
         German = x.GermanDetails ?? new();
         loading = false;
     }
-
     async Task Save()
     {
         saving = true;
         error = null;
-        model.EnglishDetails = model.Language == Language.English ? English : null;
-        model.GermanDetails = model.Language == Language.German ? German : null;
+
+        model.Examples = model.Examples
+            .Where(x =>
+                !string.IsNullOrWhiteSpace(x.Sentence) &&
+                !string.IsNullOrWhiteSpace(x.Translation))
+            .ToList();
+
+        model.EnglishDetails =
+            model.Language == Language.English ? English : null;
+
+        model.GermanDetails =
+            model.Language == Language.German ? German : null;
 
         try
         {
-            var result = Id is { } id ? await Api.UpdateAsync(id, model) : await Api.CreateAsync(model);
+            var result = Id is { } id
+                ? await Api.UpdateAsync(id, model)
+                : await Api.CreateAsync(model);
+
             Navigation.NavigateTo($"/vocabulary/{result.Id}");
         }
         catch (Exception ex)
@@ -316,7 +330,16 @@ else
 
             if (result.Examples.Any())
             {
-                model.Examples = result.Examples.Select(e => new ExampleSentenceRequest { Sentence = e.Sentence, Translation = e.Translation }).ToList();
+                model.Examples = result.Examples
+                    .Where(e =>
+                        !string.IsNullOrWhiteSpace(e.Sentence) &&
+                        !string.IsNullOrWhiteSpace(e.Translation))
+                    .Select(e => new ExampleSentenceRequest
+                    {
+                        Sentence = e.Sentence,
+                        Translation = e.Translation
+                    })
+                    .ToList();
             }
 
             if (model.Language == Language.English)
@@ -327,7 +350,8 @@ else
                 English.ThirdPersonSingular = result.ThirdPerson;
                 English.Gerund = result.Gerund;
                 English.IsIrregularVerb = result.IsIrregular;
-                English.RelatedPhrasalVerbs = result.PhrasalVerbs?.Any() == true ? string.Join(", ", result.PhrasalVerbs.Select(x => x.Text)) : English.RelatedPhrasalVerbs;
+                English.RelatedPhrasalVerbs = result.PhrasalVerbs?.Any() == true ? string.Join(", ", result.PhrasalVerbs.Select(x =>
+x.Text)) : English.RelatedPhrasalVerbs;
             }
             else
             {
