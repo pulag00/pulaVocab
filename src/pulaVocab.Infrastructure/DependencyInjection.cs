@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using pulaVocab.Infrastructure;
 using pulaVocab.Application.Vocabulary;
+using pulaVocab.Application.Practice;
 
 namespace pulaVocab.Infrastructure;
 
@@ -16,6 +17,8 @@ public static class DependencyInjection
             options.UseNpgsql(connectionString));
         services.AddScoped<IVocabularyService, VocabularyService>();
         services.AddScoped<IVocabularyLookupService, VocabularyLookupService>();
+        services.AddScoped<IPracticeService, PracticeService>();
+        services.AddSingleton<SpacedRepetitionService>();
 
         var providerEndpoint = configuration.GetSection("VocabularyLookup").GetValue<string>("ProviderEndpoint");
         if (!string.IsNullOrWhiteSpace(providerEndpoint))
