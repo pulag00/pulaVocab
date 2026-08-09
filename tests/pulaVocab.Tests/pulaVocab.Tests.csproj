@@ -20,5 +20,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\pulaVocab.Domain\pulaVocab.Domain.csproj" />
+    <ProjectReference Include="..\..\src\pulaVocab.Application\pulaVocab.Application.csproj" />
   </ItemGroup>
 </Project>
